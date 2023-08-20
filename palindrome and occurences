@@ -1,0 +1,27 @@
+def checkPalindrome(n):
+    reverse = 0
+    temp = n
+    while (n>0):
+        Reminder = n % 10
+        reverse = (reverse * 10) + Reminder
+        n = n // 10
+    
+    if (temp == reverse):
+        return True
+    else:
+        return False
+        
+num = int(input("Enter a number: "))
+if (checkPalindrome(num)):
+    print("it is a palindrome")
+else:
+    print("not a palindrome")
+    
+count = [0]*10
+while (num>0):
+    temp = num % 10
+    count[temp] += 1
+    num = num // 10
+
+for i in range (10):
+    print (i, "occured", count[i], "times")
