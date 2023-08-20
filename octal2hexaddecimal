@@ -1,0 +1,8 @@
+def octal_to_hexadecimal (octal):
+    decimal = int(str(octal), 8)
+    hexadecimal = hex(decimal)[2:]
+    return hexadecimal.upper()
+    
+input = input("Enter the octal number: ")
+output = octal_to_hexadecimal (input)
+print("The hexadecimal number is ", output)
