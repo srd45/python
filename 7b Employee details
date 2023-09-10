@@ -1,0 +1,28 @@
+class Employee:
+    def __init__(self):
+        self.name=""
+        self.empid=""
+        self.dept=""
+        self.salary=0
+    
+    def getEmpDetails(self):
+        self.name=input("Enter the Employee name: ")
+        self.empid = input("Enter the Employee ID: ")
+        self.dept = input("Enter the department of the Employee: ")
+        self.salary = int(input("Enter the Employee salary: "))
+    
+    def showEmpDetails(self):
+        self.name = print("Name:", self.name)
+        self.empid = print("ID:", self.empid)
+        self.dept = print("Department:", self.dept)
+        self.salary = print("Salary:", self.salary)
+    
+    def updtSalary(self):
+        self.salary = int(input("Enter the revised salary: "))
+        print("The revised salary is ", self.salary)
+        
+
+e1 = Employee()
+e1.getEmpDetails()
+e1.showEmpDetails()
+e1.updtSalary()
