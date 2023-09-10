@@ -1,0 +1,46 @@
+import requests
+import os
+from bs4 import BeautifulSoup
+
+# URL to start with
+url = 'https://xkcd.com/1/'
+
+# Create a folder to store the comics if it doesn't exist
+if not os.path.exists('xkcd_comics'):
+    os.makedirs('xkcd_comics')
+
+while True:
+    try:
+        # Send an HTTP GET request to the URL
+        res = requests.get(url)
+        res.raise_for_status()
+
+        # Parse the page content using BeautifulSoup
+        soup = BeautifulSoup(res.text, 'html.parser')
+
+        # Find the comic image element
+        comic_elem = soup.select('#comic img')
+        if not comic_elem:
+            print("Could not find comic image.")
+        else:
+            comic_url = 'https:' + comic_elem[0]['src']
+
+            # Download the comic image
+            print(f'Downloading {comic_url}...')
+            res = requests.get(comic_url)
+            res.raise_for_status()
+
+            # Save the comic image to the xkcd_comics folder
+            with open(os.path.join('xkcd_comics', os.path.basename(comic_url)), 'wb') as image_file:
+                for chunk in res.iter_content(100000):
+                    image_file.write(chunk)
+
+        # Get the URL of the previous comic
+        prev_link = soup.select('a[rel="prev"]')[0]
+        if not prev_link:
+            break
+        url = 'https://xkcd.com' + prev_link['href']
+    except requests.exceptions.RequestException as e:
+        print(f'Error: {e}')
+
+print('All comics downloaded.')
