@@ -12,6 +12,7 @@ def create_sheet_with_data(wb, title, headers, data):
 
 wb = Workbook()
 headers = ["State", "Name", "Code"]
+
 data = [
     ["Karnataka", "Kannada", "KA"],
     ["Telangana", "Telugu", "TS"],
@@ -19,8 +20,9 @@ data = [
 ]
 
 language_sheet = create_sheet_with_data(wb, "Language", headers, data)
+
 capital_data = [
-    ["Karnataka", "Bengaluru", "KA"],
+    ["Karnataka", "Bangalore", "KA"],
     ["Telangana", "Hyderabad", "TS"],
     ["Tamil Nadu", "Chennai", "TN"]
 ]
@@ -29,14 +31,14 @@ capital_sheet = create_sheet_with_data(wb, "Capital", headers, capital_data)
 
 wb.save("demo.xlsx")
 
-srchCode = input("Enter state code for finding capital: ")
-for row in capital_sheet.iter_rows(min_row=2, max_row=4, min_col=3, max_col=3):
-    if row[0].value == srchCode:
-        print("Corresponding capital for code", srchCode, "is", row[1].value)
-
-srchCode = input("Enter state code for finding language: ")
+srchLanguageCode = input("Enter state code for finding corresponding language: ")
 for row in language_sheet.iter_rows(min_row=2, max_row=4, min_col=3, max_col=3):
-    if row[0].value == srchCode:
-        print("Corresponding language for code", srchCode, "is", row[1].value)
+    if row[0].value == srchLanguageCode:
+        print("Corresponding language for code", srchLanguageCode, "is", row[1].value)
+
+srchCapitalCode = input("Enter state code for finding corresponding capital: ")
+for row in capital_sheet.iter_rows(min_row=2, max_row=4, min_col=3, max_col=3):
+    if row[0].value == srchCapitalCode:
+        print("Corresponding capital for code", srchCapitalCode, "is", row[1].value)
 
 wb.close()
