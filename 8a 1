@@ -15,7 +15,12 @@ class PaliInt(PaliStr):
         self.isPali = False
         
     def chkPalindrome(self,val):
-        temp = str(val)
+        temp = val
+        rev = 0
+        while temp != 0
+            dig = temp % 10
+            rev = (rev * 10) + dig
+            temp = temp // 10
         if temp == temp[::-1]:
             self.isPali = True
         else:
