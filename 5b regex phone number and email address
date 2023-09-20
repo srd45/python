@@ -1,0 +1,21 @@
+import re
+
+# Define the regular expressions for phone numbers and email addresses
+phone_regex = re.compile(r'\+\d{12}')
+email_regex = re.compile(r'[A-Za-z0-9._]+@[A-Za-z0-9]+\.[A-Za-z]{2,}')
+
+# Open the file for reading
+with open('example.txt', 'r') as f:
+    # Loop through each line in the file
+    for line in f:
+        # Search for phone numbers in the line
+        phone_matches = phone_regex.findall(line)
+        
+        # Search for email addresses in the line
+        email_matches = email_regex.findall(line)
+
+        # Print phone numbers and email addresses found in the line
+        if phone_matches:
+            print("Phone Numbers:", phone_matches)
+        if email_matches:
+            print("Email Addresses:", email_matches)
