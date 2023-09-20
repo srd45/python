@@ -22,6 +22,7 @@ class PaliInt(PaliStr):
             rev = (rev * 10) + dig
             temp = temp // 10
         if val == rev:
+            self.isPali = True
         else:
             self.isPali = False
                 
